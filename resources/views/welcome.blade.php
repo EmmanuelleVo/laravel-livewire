@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Contacts</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="http://livewire.test/js/app.js"></script>
 </head>
 <body>
 <form action="/">
@@ -25,7 +26,7 @@
 
     <input type="hidden" name="page" value="1">
 
-    <button type="submit">Change pagination</button>
+    <button class="button" type="submit">Change pagination</button>
 </form>
 <form action="/">
     <label for="search-term">Enter a part from the email or the name</label>
@@ -42,5 +43,6 @@
     <button type="submit">Filter contact list</button>
 </form>
 <x-table class="w-full" :contacts="$contacts" :qp="$qp" :sort-order="$sortOrder"/>
+{{ $contacts->appends($qp)->links() }}
 </body>
 </html>

@@ -6,7 +6,7 @@
     $qpf = array_filter($qp, fn($p) => $p !== 'sort-field', ARRAY_FILTER_USE_KEY)
 @endphp
 
-<table {{ $attributes }}>
+<table id="table">
     <thead>
     <tr>
         <td><a href="/?{{ http_build_query($qpf) }}&sort-field=name&sort-order={{$sortOrder === 'ASC' ? 'DESC' : 'ASC'}}">Name</a></td>
@@ -24,4 +24,3 @@
     @endforeach
     </tbody>
 </table>
-{{ $contacts->appends($qp)->links() }}

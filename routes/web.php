@@ -33,3 +33,21 @@ Route::get('/', function () {
         'qp', 'perPage', 'searchTerm', 'sortField', 'contacts', 'sortOrder',
     ));
 });
+
+Route::get('/ajax', function () {
+    $requestData = request()->all();
+    $qp = request()->query();
+
+    extract($requestData);
+
+    $contacts = Contact::query()
+        ->where('name', 'like', '%'.$searchTerm.'%')
+        ->orWhere('email', 'like', '%'.$searchTerm.'%')
+        ->orderBy($sortField, $sortOrder)
+        ->paginate($perPage);
+
+    return view('components.table', compact('contacts', 'qp', 'sortOrder'));
+
+});
+
+//authentification vers API : sanctum
